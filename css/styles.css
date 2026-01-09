@@ -218,7 +218,7 @@ footer {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: #00ff9f; /* hacker green accent */
   transition: color 0.3s ease;
 }
