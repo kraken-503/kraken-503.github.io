@@ -59,12 +59,12 @@ const writeups = [
   {
     title: "neovim",
     date: "Jan 2026",
-    link: "../writeups/neovim.html"
+    link: "./writeups/neovim.html"
   },
   {
     title: "iusearchbtw",
     date: "Dec 2025",
-    link: "../writeups/archlinux.html"
+    link: "./writeups/archlinux.html"
   }
 ];
 
