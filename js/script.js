@@ -57,14 +57,14 @@ function typeWriterLoop() {
 // ----------------------
 const writeups = [
   {
-    title: "CTF Challenge: SQL Injection",
+    title: "neovim",
     date: "Jan 2026",
-    link: "writeups/sql-injection.html"
+    link: "../writeups/neovim.html"
   },
   {
-    title: "Exploring Linux Privilege Escalation",
+    title: "iusearchbtw",
     date: "Dec 2025",
-    link: "writeups/linux-priv-esc.html"
+    link: "../writeups/archlinux.html"
   }
 ];
 

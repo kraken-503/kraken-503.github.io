@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writeup</title>
+
+  <!-- Main site styles -->
+
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #ffffff;
+      font-family: "Courier New", monospace;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+    position: relative;       /* allow absolute child positioning */
+    text-align: center;
+    padding: 0.1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 2.5rem;
+      left: 2.5rem;
+      color: #00ff9f;
+      text-decoration: none;
+    }
+    .home-button i {
+      font-size: 1em; /* match main site icon size */
+    }
+    .home-button:hover {
+      color: #ffffff;
+    }
+
+    .writeup-page {
+      width: 70%;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #111;
+      border: 1px solid #333;
+      border-radius: 6px;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .writeup-page h1 {
+      color: #00ff9f;
+      margin-top: 0;
+    }
+
+    .writeup-page small {
+      display: block;
+      margin-bottom: 1rem;
+      color: #aaa;
+    }
+
+    .writeup-page p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    code {
+      background: #222;
+      color: #00ff9f;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 1rem;
+      color: #00ff9f;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+.img-rounded {
+  border-radius: 12px; /* px or % */
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <!-- Home icon -->
+    <a href="../index.html" class="home-button" left:"2">
+      <i class="fas fa-home"></i>
+    </a>
+    <h1 style="font-size: 2.5rem;" >Writeups</h1>
+  </header>
+
+  <div class="writeup-page">
+    <h1 style="font-size: 6vw;">Why i use neovim over other IDEs:</h1>
+    <small>Jan 2026</small>
+
+    <p>
+    Neovim is my tiny, furious command center: modal, lightning‑fast, and endlessly scriptable. One tidy init.lua, a curated set of plugins, and my editor behaves like a bespoke instrument that anticipates my bad habits and forgives my typos. Its philosophy of doing one thing well and letting users extend the rest fits my tinkerer brain — I get power without bloat, and the whole setup rewards muscle memory and customization. As for the vim vs emacs circus, I’m firmly in the modal camp but I enjoy the roast: Emacs users claim they’ve built entire universes inside their editor, while I respond with a flurry of keystrokes and a smug plugin; it’s less a war and more a long, affectionate roast where everyone steals the good ideas and pretends they invented them.
+    </p>
+    <p>
+    PS: ESC :wq, just saying !!
+    </p>
+    <p>
+    <center>
+      <img alt="esc :wq" class="img-rounded" src="https://i.imgflip.com/9dpvif.jpg"> 
+    </center>
+    </p>
+
+    <!-- Back button to main writeups menu -->
+    <a href="../index.html?section=#writeups" class="back-link">&larr; Back to Writeups</a>
+  </div>
+</body>
+</html>
+

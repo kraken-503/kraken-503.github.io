@@ -1,41 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Writeup Title</title>
-  <link rel="stylesheet" href="../style.css">
-  <script src="../js/script.js" defer></script>
+  <title>Writeup</title>
 
-  </script>
+  <!-- Main site styles -->
+
   <style>
     body {
-      background-color: #0d0d0d; /* same as main site */
-      color: #ffffff;            /* white text */
+      background-color: #0d0d0d;
+      color: #ffffff;
       font-family: "Courier New", monospace;
       margin: 0;
       padding: 0;
     }
 
     header {
-      text-align: center;
-      padding: 2rem;
-      border-bottom: 1px solid #333;
+    position: relative;       /* allow absolute child positioning */
+    text-align: center;
+    padding: 0.1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 2rem;
+    }
+
+    .home-button {
+      position: absolute;
+      top: 2.5rem;
+      left: 2.5rem;
+      color: #00ff9f;
+      text-decoration: none;
+    }
+    .home-button i {
+      font-size: 1em; /* match main site icon size */
+    }
+    .home-button:hover {
+      color: #ffffff;
     }
 
     .writeup-page {
       width: 70%;
       margin: 2rem auto;
       padding: 2rem;
-      background-color: #111; /* subtle contrast card */
+      background-color: #111;
       border: 1px solid #333;
       border-radius: 6px;
       box-shadow: 0 0 10px #000;
     }
 
     .writeup-page h1 {
-      color: #00ff9f; /* hacker green accent */
+      color: #00ff9f;
       margin-top: 0;
     }
 
@@ -62,35 +79,37 @@
       margin-top: 1rem;
       color: #00ff9f;
       text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
     }
     .back-link:hover {
       text-decoration: underline;
+      color: #ffffff;
     }
+.img-rounded {
+  border-radius: 12px; /* px or % */
+}
   </style>
 </head>
 <body>
   <header>
-    <a href="../index.html" class="home-button" data-section="home">
-    <i class="fas fa-home"></i>
+    <!-- Home icon -->
+    <a href="../index.html" class="home-button" left:"2">
+      <i class="fas fa-home"></i>
     </a>
-    <h1>Writeups</h1>
+    <h1 style="font-size: 2.5rem;" >Writeups</h1>
   </header>
 
   <div class="writeup-page">
-    <h1>CTF Challenge: SQL Injection</h1>
+    <h1 style="font-size: 6vw;">:</h1>
     <small>Jan 2026</small>
-
+  
     <p>
-      This is where the full writeup goes. You can include detailed explanations,
-      code snippets, screenshots, or walkthroughs of your challenge.
+    
     </p>
-
-    <p>
-      Example: The vulnerable query was <code>SELECT * FROM users WHERE id = '$id'</code>.
-      By injecting <code>' OR '1'='1</code>, we bypassed authentication.
-    </p>
-
-    <a href="#" data-section="writeups" class="nav-menu">&larr; Back to Writeups</a>
+    
+    <!-- Back button to main writeups menu -->
+    <a href="../index.html?section=#writeups" class="back-link">&larr; Back to Writeups</a>
   </div>
 </body>
 </html>

@@ -261,3 +261,7 @@ body.light-mode .btn-visualizer:hover {
   color: #fff;
 }
 
+.img-rounded {
+  border-radius: 12px; /* px or % */
+}
+
