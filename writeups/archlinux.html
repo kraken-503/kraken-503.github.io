@@ -1,117 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Writeup</title>
-
-  <!-- Main site styles -->
-
   <style>
-    body {
-      background-color: #0d0d0d;
-      color: #ffffff;
-      font-family: "Courier New", monospace;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg-dark: #0d0d0d;
+      --text-dark: #ffffff;
+      --accent-green: #00ff9f;
+      --accent-yellow: #f5c542;
+      --beige-bg: #f6ecd9;
+      --beige-text: #222;
+    }
+    .writeup-page h1 { color: var(--accent-green); }
+
+    body.light-mode .writeup-page h1 {
+    color: var(--accent-yellow);
+    transition: color 200ms ease;
     }
 
-    header {
-    position: relative;       /* allow absolute child positioning */
-    text-align: center;
-    padding: 0.1rem;
-    margin-bottom: 0.5rem;
-    margin-top: 2rem;
+    .img-rounded{
+      max-width: 100%;
+      border-radius: 12px;
     }
 
-    .home-button {
-      position: absolute;
-      top: 2.5rem;
-      left: 2.5rem;
-      color: #00ff9f;
-      text-decoration: none;
-    }
-    .home-button i {
-      font-size: 1em; /* match main site icon size */
-    }
-    .home-button:hover {
-      color: #ffffff;
-    }
-
-    .writeup-page {
-      width: 70%;
-      margin: 2rem auto;
-      padding: 2rem;
-      background-color: #111;
-      border: 1px solid #333;
-      border-radius: 6px;
-      box-shadow: 0 0 10px #000;
-    }
-
-    .writeup-page h1 {
-      color: #00ff9f;
-      margin-top: 0;
-    }
-
-    .writeup-page small {
-      display: block;
-      margin-bottom: 1rem;
-      color: #aaa;
-    }
-
-    .writeup-page p {
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    code {
-      background: #222;
-      color: #00ff9f;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 1rem;
-      color: #00ff9f;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    .back-link:hover {
-      text-decoration: underline;
-      color: #ffffff;
-    }
-.img-rounded {
-  border-radius: 12px; /* px or % */
-}
+    body { background: var(--bg-dark); color: var(--text-dark); font-family: "Courier New", monospace; margin:0; padding:0; }
+    header { position: relative; text-align: center; padding: 0.1rem; margin-top: 2rem; }
+    .home-button { position: absolute; top: 2.5rem; left: 2.5rem; color: var(--accent-green); text-decoration: none; }
+    .home-button:hover { color: #fff; }
+    .writeup-page { width: 70%; margin: 2rem auto; padding: 2rem; background-color: #111; border: 1px solid #333; border-radius: 6px; box-shadow: 0 0 10px #000; }
+    .writeup-page h1 { color: var(--accent-green); margin-top: 0; }
+    .writeup-page small { display:block; margin-bottom:1rem; color:#aaa; }
+    .back-link { color: var(--accent-green); text-decoration:none; font-weight:bold; }
+    .back-link:hover { color:#fff; text-decoration:underline; }
+    body.light-mode { background: var(--beige-bg); color: var(--beige-text); }
+    body.light-mode .writeup-page { background: #fbf7ef; border: 1px solid #ddd; }
+    body.light-mode .home-button { color: var(--accent-yellow); }
+    body.light-mode .back-link { color: #006699; }
   </style>
 </head>
 <body>
   <header>
-    <!-- Home icon -->
-    <a href="../index.html" class="home-button" left:"2">
-      <i class="fas fa-home"></i>
-    </a>
-    <h1 style="font-size: 2.5rem;" >Writeups</h1>
+    <a href="../index.html" class="home-button"><i class="fas fa-home"></i></a>
+    <h1 style="font-size: 2.5rem;">Writeups</h1>
   </header>
 
   <div class="writeup-page">
-    <h1 style="font-size: 6vw;">Why I Use Arch Linux:</h1>
+    <h1 style="font-size: 6vw;">Why I Use Arch Linux?</h1>
     <small>Jan 2026</small>
-
     <p>
     I run Arch Linux because I enjoy the tiny, self-inflicted chaos of building my system from the ground up — it’s like IKEA for masochists, but with fewer allen keys and more <code>pacman -Syu</code> prayers. The whole point is control: a minimal base, no hand‑holding, and the delicious responsibility of breaking something and then Googling my way back to dignity. Rolling releases mean my packages are fresh and my confidence is occasionally shattered, which is a perfect combo for a hobbyist who likes learning by debugging at 2 a.m.</p>
     <p>
-
-Arch’s philosophy is gloriously blunt: keep it simple by not adding useless layers, and trust the user to actually read the manual (or at least the Arch Wiki, which is basically scripture with code samples). You get a clean mental model of your OS — kernel, init, packages — so when something goes wrong you don’t curse the distro, you interrogate it like a suspect in a noir film. The payoff is a system that behaves exactly how you want, plus the smug satisfaction of knowing you fixed a dependency conflict without opening a single support ticket.
-</p>
-<p>
-The tooling is where the hobby becomes a lifestyle: pacman is fast and efficient, the AUR is a chaotic bazaar of community recipes, and dotfiles become your personal shrine. Yes, updates sometimes demand manual intervention and yes, you will learn to love the Arch Wiki more than most people love their pets, but that’s the point — Arch turns system administration into a craft. Also, it fuels endless late‑night bragging rights and the kind of distro banter that makes for excellent commit messages and even better memes.
+    Arch’s philosophy is gloriously blunt: keep it simple by not adding useless layers, and trust the user to actually read the manual (or at least the Arch Wiki, which is basically scripture with code samples). You get a clean mental model of your OS — kernel, init, packages — so when something goes wrong you don’t curse the distro, you interrogate it like a suspect in a noir film. The payoff is a system that behaves exactly how you want, plus the smug satisfaction of knowing you fixed a dependency conflict without opening a single support ticket.
+    </p>
+    <p>
+    The tooling is where the hobby becomes a lifestyle: pacman is fast and efficient, the AUR is a chaotic bazaar of community recipes, and dotfiles become your personal shrine. Yes, updates sometimes demand manual intervention and yes, you will learn to love the Arch Wiki more than most people love their pets, but that’s the point — Arch turns system administration into a craft. Also, it fuels endless late‑night bragging rights and the kind of distro banter that makes for excellent commit messages and even better memes.
     </p>
     <p>
     Also, I can rice tf out of it!! 
@@ -119,10 +64,15 @@ The tooling is where the hobby becomes a lifestyle: pacman is fast and efficient
       <img alt="rice missing" class="img-rounded" src="https://c.tenor.com/DVa6IqM7TxEAAAAC/tenor.gif"> 
     </center>
     </p>
-
-    <!-- Back button to main writeups menu -->
-    <a href="../index.html?section=#writeups" class="back-link">&larr; Back to Writeups</a>
+    <a href="../index.html#writeups" class="back-link">&larr; Back to Writeups</a>
   </div>
+
+  <script>
+    (function(){
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light') document.body.classList.add('light-mode');
+    })();
+  </script>
 </body>
 </html>
 

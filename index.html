@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <!-- WaveSurfer core -->
+  <!-- wavesurfer-->
   <script src="https://unpkg.com/wavesurfer.js" defer></script>
   <script src="./js/script.js" defer></script>
   <meta charset="UTF-8">
@@ -14,14 +14,17 @@
 <body>
   <header>
     <a href="index.html" class="home-button" data-section="home">
-    <i class="fas fa-home"></i>
+      <i class="fas fa-home"></i>
     </a>
-    <!--Dark/Light switch-->
-    <button id="theme-toggle" class="theme-toggle"> <i id="icon-moon" class="fas fa-moon"></i> 
-      <i id="icon-sun" class="fas fa-sun" style="display:none;"></i>
 
+    <!-- Dark/Light switch -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+      <i id="icon-moon" class="fas fa-moon"></i>
+      <i id="icon-sun" class="fas fa-sun"></i>
     </button>
+
     <h1>km-X-zn-I-³-</h1>
+    <br>
     <nav>
       <ul class="nav-menu">
         <li><a href="#" data-section="home">Home</a></li>
@@ -32,11 +35,12 @@
       </ul>
     </nav>
   </header>
-  <br>
-   <!-- Music Visualizer --> <div id="waveform"></div> <button id="playPause" class="btn-visualizer">$ play
-   </button> </div> 
-   <br><br>
-  <!-- Home (terminal card) -->
+
+  <!-- Music Visualizer -->
+  <div id="waveform"></div>
+  <button id="playPause" class="btn-visualizer">$ play</button>
+
+  <!-- Home terminal card -->
   <div id="home" class="page-section">
     <div class="terminal-card">
       <div class="terminal-header">
@@ -49,14 +53,13 @@
         <strong id="typed-name"></strong><span class="cursor"></span>
       </div>
     </div>
-    <br>
-
   </div>
+
   <!-- About Me -->
   <section id="about" class="page-section hidden">
     <div><h2>Tech Stack</h2></div>
-    <img src="https://skills.syvixor.com/api/icons?i=linux,arch,android,vim,neovim,git,github,html,css,sql,bash,python,c,metasploit"
-    alt="tech_stack" class="responsive-img">
+    <img src="https://skills.syvixor.com/api/icons?i=linux,arch,android,vim,neovim,git,github,html,css,sql,bash,lua,python,c,metasploit"
+         alt="tech_stack" class="responsive-img">
     <br><br>
     <p>Cyber security enthusiast</p>
     <p>Curious mind | breaking systems to secure them</p>
@@ -64,75 +67,48 @@
 
   <!-- Contact -->
   <section id="contact" class="page-section hidden">
-    <h2></h2>
     <p>Email: <a href="mailto:krakenzz503@gmail.com">mail</a></p>
-    <br>
     <p>GitHub: <a href="https://github.com/kraken-503/" target="_blank">kraken-503</a></p>
   </section>
 
   <!-- Writeups -->
   <section id="writeups" class="page-section hidden">
-    <h2></h2>
-    <div id="writeups-container">
-      <!-- Writeups will be injected here by JS -->
-    </div>
+    <div id="writeups-container"></div>
   </section>
-  
+
   <!-- Extras -->
   <section id="extras" class="page-section hidden">
     <center><h2><u>WORDS TO LIVE BY</u></h2></center>
-    <br>
-    <p>
-    "Why Has Thou Forsaken Me, O Deity Whose Existence I Doubt"
-    <footer>
-      - Dr Sheldon Lee Cooper
-    </footer>
-    </p>
-    <br><br>
-    <p>
-      "The Power To Destroy A Thing Is The Absolute Control Over It"
-    <footer>
-      - Frank Herbert, Dune
-    </footer>
-    </p>
-    <br>
-    <p>
-    "I Wish You Good Fortunes In The Wars To Come, And Now It Begins"
-    <footer>
-      - Ser Arthur Dayne
-    </footer>
-    </p>
-    <br>
-    <p>
-    "May The Force Be With You"
-    <footer>
-      - Obi-Wan Kenobi
-    </footer>
-    </p>
-    <br><br>
-    <p>
-    What do I do? System architecture, networking and security. No one in this house can touch me on that.
-    </p>
-    <p>
-    But does anyone appreciate that?
-    </p>
-    <p>
-    While you were busy minoring in gender studies and singing acappella at Sarah Lawrence, 
-    I was gaining root access to NSA servers. I was one click away from starting a second Iranian Revolution.
-    I prevent cross-site scripting. I monitor for DDoS attacks, emergency database rollbacks, and faulty transaction handling.
-    </p>
-    <p>
-    The internet — heard of it? It transfers half a petabyte of data every minute. Do you have any idea how that happens?
-    All those YouPorn ones and zeros streaming directly to your shitty little smartphone day after day. Every dipshit who
-    shits his pants if we can't get the new dubstep Skrillex remix in under 12 seconds.
-    It's not magic; it's talent and sweat. People like me ensuring your packets get delivered unsniffed.
-    </p>
-    <p>
-    So what do I do? I make sure that one bad config on one key component doesn't bankrupt the entire fucking company. That's what the fuck I do.
-    <footer>
-      - Bertram Gilfoyle 
-    </footer>
-    </p>
+    <div class="extras-content">
+      <p>"Why Has Thou Forsaken Me, O Deity Whose Existence I Doubt"</p>
+      <footer>- Dr Sheldon Lee Cooper</footer>
+      <br><br>
+      <p>"The Power To Destroy A Thing Is The Absolute Control Over It"</p>
+      <footer>- Frank Herbert, Dune</footer>
+      <br><br>
+
+      <p>"I Wish You Good Fortunes In The Wars To Come, And Now It Begins"</p>
+      <footer>- Ser Arthur Dayne</footer>
+      <br><br>
+
+      <p>"May The Force Be With You"</p>
+      <footer>- Obi-Wan Kenobi</footer>
+      <br><br>
+
+      <p>"What do I do? System architecture, networking and security. No one in this house can touch me on that."</p>
+      <p> But does anyone appreciate that?</p>
+      <p>While you were busy minoring in gender studies and singing acappella at Sarah Lawrence, I was gaining root access to NSA servers. I was 
+      one click away from starting a second Iranian revolution.</p>
+      <p>I prevent cross-site scripting. I monitor for DDoS attacks, emergency database rollbacks, and faulty transaction handling.</p>
+      <p> The internet — heard of it? transfers half a petabyte of data every minute. Do you have any idea how that happens?
+          All those YouPorn ones and zeros streaming directly to your shitty little smartphone day after day. Every dipshit who
+          shits his pants if he can't get the new dubstep Skrillex remix in under 12 seconds.
+          It's not magic; it's talent and sweat. People like me ensuring your packets get delivered unsniffed.</p>
+      <p>So what do I do? I make sure that one bad config on one key component doesn't bankrupt the entire fucking company.</p>
+      <p>Thats what the fuck i do"</p>
+      <footer>- Bertram Gilfoyle</footer>
+      <br><br>
+    </div>
   </section>
 </body>
 </html>

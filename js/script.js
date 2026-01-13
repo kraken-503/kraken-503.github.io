@@ -1,162 +1,154 @@
-// ----------------------
-// Menu Navigation
-// ----------------------
-function setupMenu() {
-  document.querySelectorAll('.nav-menu a').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const target = link.getAttribute('data-section');
+/* global WaveSurfer */
 
-      // Hide all sections
-      document.querySelectorAll('.page-section').forEach(section => {
-        section.classList.add('hidden');
+document.addEventListener("DOMContentLoaded", () => {
+
+  // Config and theme colors
+  const FADE_MS = 250;
+  const MIN_GAIN = 0.0001;
+
+  const DARK_WAVE = '#00ff9f';
+  const DARK_PROGRESS = '#ffffff';
+  const LIGHT_WAVE = '#f5c542';
+  const LIGHT_PROGRESS = '#ffffff';
+
+  // Menu Navigation
+  function setupMenu() {
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = link.getAttribute('data-section');
+        if (!target) return;
+
+        // Update hash in URL
+        window.location.hash = target;
+
+        // Hide all sections
+        document.querySelectorAll('.page-section').forEach(section => section.classList.add('hidden'));
+
+        // Show the selected section
+        const el = document.getElementById(target);
+        if (el) el.classList.remove('hidden');
+
+        // Update active link
+        document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+        link.classList.add('active');
       });
-
-      // Show the selected section
-      document.getElementById(target).classList.remove('hidden');
-
-      // Update active link
-      document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
-      link.classList.add('active');
     });
-  });
-}
+  }
 
-// ----------------------
-// Terminal Typewriter
-// ----------------------
-const terminalText = "kraken-503";  // Replace with your name
-const typedNameEl = document.getElementById("typed-name");
-let idx = 0;
-let deleting = false;
+  // Terminal Typewriter
+  const terminalText = "kraken-503";
+  const typedNameEl = document.getElementById("typed-name");
+  let idx = 0;
+  let deleting = false;
 
-function typeWriterLoop() {
-  if (!typedNameEl) return;
-
-  if (!deleting && idx < terminalText.length) {
-    typedNameEl.textContent += terminalText.charAt(idx);
-    idx++;
-    setTimeout(typeWriterLoop, 120);
-  } else if (deleting && idx > 0) {
-    typedNameEl.textContent = terminalText.substring(0, idx - 1);
-    idx--;
-    setTimeout(typeWriterLoop, 80);
-  } else {
-    if (!deleting) {
-      deleting = true;
-      setTimeout(typeWriterLoop, 3000); // pause before erasing
+  function typeWriterLoop() {
+    if (!typedNameEl) return;
+    if (!deleting && idx < terminalText.length) {
+      typedNameEl.textContent += terminalText.charAt(idx);
+      idx++;
+      setTimeout(typeWriterLoop, 120);
+    } else if (deleting && idx > 0) {
+      typedNameEl.textContent = terminalText.substring(0, idx - 1);
+      idx--;
+      setTimeout(typeWriterLoop, 80);
     } else {
-      deleting = false;
-      setTimeout(typeWriterLoop, 2000); // pause before typing again
+      if (!deleting) {
+        deleting = true;
+        setTimeout(typeWriterLoop, 3000);
+      } else {
+        deleting = false;
+        setTimeout(typeWriterLoop, 2000);
+      }
     }
   }
-}
 
-// ----------------------
-// Writeups functionality
-// ----------------------
-const writeups = [
-  {
-    title: "neovim",
-    date: "Jan 2026",
-    link: "./writeups/neovim.html"
-  },
-  {
-    title: "iusearchbtw",
-    date: "Dec 2025",
-    link: "./writeups/archlinux.html"
+  // Writeups loader
+  const writeups = [
+    { title: "neovim", date: "Jan 2026", link: "./writeups/neovim.html" },
+    { title: "iusearchbtw", date: "Dec 2025", link: "./writeups/archlinux.html" }
+  ];
+
+  function loadWriteups() {
+    const container = document.getElementById("writeups-container");
+    if (!container) return;
+    container.innerHTML = '';
+    writeups.forEach(w => {
+      const heading = document.createElement("a");
+      heading.className = "writeup-heading";
+      heading.href = w.link;
+      heading.innerHTML = `<h3>$ cat ${w.title.replace(/\s+/g, "_")}.txt</h3><small>${w.date}</small>`;
+      container.appendChild(heading);
+    });
   }
-];
 
-function loadWriteups() {
-  const container = document.getElementById("writeups-container");
-  if (!container) return;
-  writeups.forEach(w => {
-    const heading = document.createElement("a");
-    heading.className = "writeup-heading";
-    heading.href = w.link;
-    heading.innerHTML = `<h3>$ cat ${w.title.replace(/\s+/g, "_")}.txt</h3><small>${w.date}</small>`;
-    container.appendChild(heading);
-  });
-}
+  // Wavesurfer Visualizer
+  // Determine initial theme
+  const savedTheme = localStorage.getItem('theme');
+  const isLightInit = savedTheme === 'light';
 
-// ----------------------
-// Init
-// ----------------------
-document.addEventListener("DOMContentLoaded", () => {
-  // Start typewriter
-  if (typedNameEl) {
-    typedNameEl.textContent = "";
-    typeWriterLoop();
-  }
-  // Setup menu
-  setupMenu();
-  // Load writeups
-  loadWriteups();
-});
-
-document.querySelectorAll('.nav-menu a').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    const target = link.getAttribute('data-section');
-
-    // Update hash in URL
-    window.location.hash = target;
-
-    // Hide all sections
-    document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
-    // Show selected section
-    document.getElementById(target).classList.remove('hidden');
-
-    // Update active link
-    document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const section = window.location.hash.replace('#','') || 'home';
-  document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
-  const target = document.getElementById(section);
-  if (target) target.classList.remove('hidden');
-
-  // Update nav active state
-  document.querySelectorAll('.nav-menu a').forEach(a => {
-    a.classList.remove('active');
-    if (a.getAttribute('data-section') === section) {
-      a.classList.add('active');
-    }
-  });
-});
-
-// ----------------------
-// WaveSurfer Visualizer
-// ----------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const wavesurfer = WaveSurfer.create({
+  // Create wavesurfer with initial colors based on theme
+  let wavesurfer = WaveSurfer.create({
     container: '#waveform',
-    waveColor: '#00ff9f',
-    progressColor: '#ffffff',
+    waveColor: isLightInit ? LIGHT_WAVE : DARK_WAVE,
+    progressColor: isLightInit ? LIGHT_PROGRESS : DARK_PROGRESS,
     height: 115,
     responsive: true
   });
 
   wavesurfer.load('audio/gotye.mp3');
-
-  // ensure starting volume
   wavesurfer.setVolume(1);
 
-  // simple easeInOut function
-  function easeInOut(t) {
-    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  wavesurfer.isReady = false;
+  wavesurfer.on('ready', () => { wavesurfer.isReady = true; });
+
+  function updateWaveColors(waveColor, progressColor) {
+    if (!wavesurfer) return;
+    if (typeof wavesurfer.setOptions === 'function') {
+      wavesurfer.setOptions({ waveColor, progressColor });
+      if (wavesurfer.isReady) {
+        if (typeof wavesurfer.drawBuffer === 'function') {
+          wavesurfer.drawBuffer();
+        } else if (wavesurfer.drawer && typeof wavesurfer.drawer.drawPeaks === 'function') {
+          try {
+            const peaks = wavesurfer.backend.getPeaks(1024);
+            wavesurfer.drawer.drawPeaks(peaks, wavesurfer.getDuration());
+          } catch (e) {
+            // ignore and fallback
+          }
+        }
+      }
+      return;
+    }
+
+    // fallback: destroy & recreate
+    const currentTime = wavesurfer.getCurrentTime ? wavesurfer.getCurrentTime() : 0;
+    const wasPlaying = wavesurfer.isPlaying && wavesurfer.isPlaying();
+    wavesurfer.destroy();
+
+    wavesurfer = WaveSurfer.create({
+      container: '#waveform',
+      waveColor,
+      progressColor,
+      height: 115,
+      responsive: true
+    });
+    wavesurfer.load('audio/gotye.mp3');
+    wavesurfer.on('ready', () => {
+      wavesurfer.seekTo(currentTime / wavesurfer.getDuration());
+      if (wasPlaying) wavesurfer.play();
+      wavesurfer.isReady = true;
+    });
+    window.wavesurfer = wavesurfer;
   }
 
-  function rampVolume(target, duration = 200) {
+  // ---------- Fade helpers----------
+  function easeInOut(t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; }
+  function rampVolumeJS(target, duration = FADE_MS) {
     return new Promise(resolve => {
       const startTime = performance.now();
       const startVol = wavesurfer.getVolume();
       const delta = target - startVol;
-
       function step(now) {
         const p = Math.min(1, (now - startTime) / duration);
         const eased = easeInOut(p);
@@ -168,64 +160,134 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  async function fadePause() {
-    // fade out then pause
-    await rampVolume(0, 200); // 200ms fade
+  // Minimal getGainNode/getAudioContext/ensureAudioContext helpers (used by fade)
+  function getGainNode(ws) {
+    try {
+      if (!ws || !ws.backend) return null;
+      if (ws.backend.gainNode) return ws.backend.gainNode;
+      if (typeof ws.backend.getGainNode === 'function') return ws.backend.getGainNode();
+      if (ws.backend.masterGain) return ws.backend.masterGain;
+      return null;
+    } catch (e) { return null; }
+  }
+  function getAudioContext(ws) {
+    try {
+      if (!ws || !ws.backend) return null;
+      if (typeof ws.backend.getAudioContext === 'function') return ws.backend.getAudioContext();
+      if (ws.backend.ac) return ws.backend.ac;
+      return null;
+    } catch (e) { return null; }
+  }
+  async function ensureAudioContext(ws) {
+    const ac = getAudioContext(ws);
+    if (ac && ac.state === 'suspended') {
+      try { await ac.resume(); } catch (e) { /* ignore */ }
+    }
+  }
+
+  // WebAudio fade automation (best-effort)
+  async function fadeOutAndPause(duration = FADE_MS) {
+    const gainNode = getGainNode(wavesurfer);
+    const audioCtx = getAudioContext(wavesurfer);
+    if (gainNode && audioCtx) {
+      try {
+        const g = gainNode.gain || gainNode;
+        const now = audioCtx.currentTime;
+        g.cancelScheduledValues(now);
+        g.linearRampToValueAtTime(MIN_GAIN, now + Math.max(0.01, duration / 1000));
+        await new Promise(r => setTimeout(r, duration + 10));
+        wavesurfer.pause();
+        g.cancelScheduledValues(audioCtx.currentTime);
+        g.setValueAtTime(1, audioCtx.currentTime);
+        return;
+      } catch (e) { /* fallback */ }
+    }
+    await rampVolumeJS(0, duration);
     wavesurfer.pause();
-    // restore volume to 1 so next play fades in from full volume
     wavesurfer.setVolume(1);
   }
 
-  async function fadePlay() {
-    // start from 0 so fade-in is audible
+  async function fadeInAndPlay(duration = FADE_MS) {
+    const gainNode = getGainNode(wavesurfer);
+    const audioCtx = getAudioContext(wavesurfer);
+    await ensureAudioContext(wavesurfer);
+    if (gainNode && audioCtx) {
+      try {
+        const g = gainNode.gain || gainNode;
+        const now = audioCtx.currentTime;
+        g.cancelScheduledValues(now);
+        g.setValueAtTime(MIN_GAIN, now);
+        wavesurfer.play();
+        g.linearRampToValueAtTime(1.0, now + Math.max(0.01, duration / 1000));
+        await new Promise(r => setTimeout(r, duration + 10));
+        return;
+      } catch (e) { /* fallback */ }
+    }
     wavesurfer.setVolume(0);
     wavesurfer.play();
-    await rampVolume(1, 200); // 200ms fade
+    await rampVolumeJS(1, duration);
   }
 
+  // ---------- Play/pause wiring ----------
   const playBtn = document.getElementById('playPause');
   if (playBtn) {
     playBtn.addEventListener('click', async () => {
-      // if currently playing, fade out then pause; otherwise fade in then play
+      await ensureAudioContext(wavesurfer);
       if (wavesurfer.isPlaying()) {
-        await fadePause();
+        await fadeOutAndPause();
         playBtn.textContent = '$ play';
       } else {
-        await fadePlay();
+        await fadeInAndPlay();
         playBtn.textContent = '$ pause';
       }
     });
   }
-});
 
+  // Theme toggle wiring
+  const toggleBtn = document.getElementById('theme-toggle');
+  const iconSun = document.getElementById('icon-sun');
+  const iconMoon = document.getElementById('icon-moon');
 
-//dark/light switcher
-   
-const toggleBtn = document.getElementById('theme-toggle');
-const iconMoon = document.getElementById('icon-moon');
-const iconSun = document.getElementById('icon-sun');
-
-toggleBtn.addEventListener('click', () => {
-  document.body.classList.toggle('light-mode');
-
-  if (document.body.classList.contains('light-mode')) {
-    iconMoon.style.display = 'none';
-    iconSun.style.display = 'inline';
-    localStorage.setItem('theme', 'light');
-  } else {
-    iconMoon.style.display = 'inline';
-    iconSun.style.display = 'none';
-    localStorage.setItem('theme', 'dark');
+  function applyTheme(isLight) {
+    document.body.classList.toggle('light-mode', isLight);
+    if (iconSun && iconMoon) {
+      iconSun.style.display = isLight ? 'inline' : 'none';
+      iconMoon.style.display = isLight ? 'none' : 'inline';
+    }
+    // update waveform colors
+    if (isLight) updateWaveColors(LIGHT_WAVE, LIGHT_PROGRESS);
+    else updateWaveColors(DARK_WAVE, DARK_PROGRESS);
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
   }
-});
 
-// Load saved preference
-window.onload = () => {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme === 'light') {
-    document.body.classList.add('light-mode');
-    iconMoon.style.display = 'none';
-    iconSun.style.display = 'inline';
+  toggleBtn && toggleBtn.addEventListener('click', async () => {
+    await ensureAudioContext(wavesurfer);
+    const isLight = !document.body.classList.contains('light-mode');
+    applyTheme(isLight);
+  });
+
+  // initialize theme and UI
+  applyTheme(isLightInit);
+
+  // Init UI features
+  if (typedNameEl) {
+    typedNameEl.textContent = "";
+    typeWriterLoop();
   }
-};
+  setupMenu();
+  loadWriteups();
+
+  // Restore section from hash
+  const section = window.location.hash.replace('#','') || 'home';
+  document.querySelectorAll('.page-section').forEach(sec => sec.classList.add('hidden'));
+  const target = document.getElementById(section);
+  if (target) target.classList.remove('hidden');
+  document.querySelectorAll('.nav-menu a').forEach(a => {
+    a.classList.remove('active');
+    if (a.getAttribute('data-section') === section) a.classList.add('active');
+  });
+
+  // expose for debugging
+  window.wavesurfer = wavesurfer;
+});
 

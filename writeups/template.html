@@ -1,116 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Writeup</title>
-
-  <!-- Main site styles -->
-
   <style>
-    body {
-      background-color: #0d0d0d;
-      color: #ffffff;
-      font-family: "Courier New", monospace;
-      margin: 0;
-      padding: 0;
+    :root {
+      --bg-dark: #0d0d0d;
+      --text-dark: #ffffff;
+      --accent-green: #00ff9f;
+      --accent-yellow: #f5c542;
+      --beige-bg: #f6ecd9;
+      --beige-text: #222;
+    }
+    
+    .writeup-page h1 { color: var(--accent-green); }
+
+    body.light-mode .writeup-page h1 {
+    color: var(--accent-yellow);
+    transition: color 200ms ease;
+    }
+    
+    .img-rounded{
+      max-width: 100%;
+      border-radius: 12px;
     }
 
-    header {
-    position: relative;       /* allow absolute child positioning */
-    text-align: center;
-    padding: 0.1rem;
-    margin-bottom: 0.5rem;
-    margin-top: 2rem;
-    }
-
-    .home-button {
-      position: absolute;
-      top: 2.5rem;
-      left: 2.5rem;
-      color: #00ff9f;
-      text-decoration: none;
-    }
-    .home-button i {
-      font-size: 1em; /* match main site icon size */
-    }
-    .home-button:hover {
-      color: #ffffff;
-    }
-
-    .writeup-page {
-      width: 70%;
-      margin: 2rem auto;
-      padding: 2rem;
-      background-color: #111;
-      border: 1px solid #333;
-      border-radius: 6px;
-      box-shadow: 0 0 10px #000;
-    }
-
-    .writeup-page h1 {
-      color: #00ff9f;
-      margin-top: 0;
-    }
-
-    .writeup-page small {
-      display: block;
-      margin-bottom: 1rem;
-      color: #aaa;
-    }
-
-    .writeup-page p {
-      line-height: 1.6;
-      margin-bottom: 1rem;
-    }
-
-    code {
-      background: #222;
-      color: #00ff9f;
-      padding: 2px 4px;
-      border-radius: 4px;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 1rem;
-      color: #00ff9f;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-    .back-link:hover {
-      text-decoration: underline;
-      color: #ffffff;
-    }
-.img-rounded {
-  border-radius: 12px; /* px or % */
-}
+    body { background: var(--bg-dark); color: var(--text-dark); font-family: "Courier New", monospace; margin:0; padding:0; }
+    header { position: relative; text-align: center; padding: 0.1rem; margin-top: 2rem; }
+    .home-button { position: absolute; top: 2.5rem; left: 2.5rem; color: var(--accent-green); text-decoration: none; }
+    .home-button:hover { color: #fff; }
+    .writeup-page { width: 70%; margin: 2rem auto; padding: 2rem; background-color: #111; border: 1px solid #333; border-radius: 6px; box-shadow: 0 0 10px #000; }
+    .writeup-page h1 { color: var(--accent-green); margin-top: 0; }
+    .writeup-page small { display:block; margin-bottom:1rem; color:#aaa; }
+    .back-link { color: var(--accent-green); text-decoration:none; font-weight:bold; }
+    .back-link:hover { color:#fff; text-decoration:underline; }
+    body.light-mode { background: var(--beige-bg); color: var(--beige-text); }
+    body.light-mode .writeup-page { background: #fbf7ef; border: 1px solid #ddd; }
+    body.light-mode .home-button { color: var(--accent-yellow); }
+    body.light-mode .back-link { color: #006699; }
   </style>
 </head>
 <body>
   <header>
-    <!-- Home icon -->
-    <a href="../index.html" class="home-button" left:"2">
-      <i class="fas fa-home"></i>
-    </a>
-    <h1 style="font-size: 2.5rem;" >Writeups</h1>
+    <a href="../index.html" class="home-button"><i class="fas fa-home"></i></a>
+    <h1 style="font-size: 2.5rem;">Writeups</h1>
   </header>
 
   <div class="writeup-page">
-    <h1 style="font-size: 6vw;">:</h1>
+    <h1 style="font-size: 6vw;">  </h1>
     <small>Jan 2026</small>
-  
-    <p>
-    
-    </p>
-    
-    <!-- Back button to main writeups menu -->
-    <a href="../index.html?section=#writeups" class="back-link">&larr; Back to Writeups</a>
+   
+
+    <a href="../index.html#writeups" class="back-link">&larr; Back to Writeups</a>
   </div>
+
+  <script>
+    (function(){
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light') document.body.classList.add('light-mode');
+    })();
+  </script>
 </body>
 </html>
 
