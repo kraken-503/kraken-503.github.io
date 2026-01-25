@@ -48,7 +48,7 @@
   </header>
 
   <div class="writeup-page">
-    <h1 style="font-size: 6vw;">Why I Use Arch Linux?</h1>
+    <h1 style="font-size: 3rem;">Why I Use Arch Linux?</h1>
     <small>Jan 2026</small>
     <p>
     I run Arch Linux because I enjoy the tiny, self-inflicted chaos of building my system from the ground up — it’s like IKEA for masochists, but with fewer allen keys and more <code>pacman -Syu</code> prayers. The whole point is control: a minimal base, no hand‑holding, and the delicious responsibility of breaking something and then Googling my way back to dignity. Rolling releases mean my packages are fresh and my confidence is occasionally shattered, which is a perfect combo for a hobbyist who likes learning by debugging at 2 a.m.</p>
@@ -65,6 +65,80 @@
     </center>
     </p>
     <a href="../index.html#writeups" class="back-link">&larr; Back to Writeups</a>
+    <br>
+    
+    <!-- Comments placeholder -->
+  <section id="comments-section" class="comments-section">
+  <h3>Comments</h3>
+  <div id="comments"></div>
+  </section>
+
+<!-- Giscus widget (one per page) -->
+<script src="https://giscus.app/client.js"
+  data-repo="kraken-503/website"
+  data-repo-id="R_kgDOQ2jqiw"
+  data-category="General"
+  data-category-id="DIC_kwDOQ2jqi84C1Zeh"
+  data-mapping="pathname"
+  data-strict="0"
+  data-reactions-enabled="1"
+  data-emit-metadata="0"
+  data-input-position="bottom"
+  data-theme="preferred_color_scheme"
+  data-lang="en"
+  crossorigin="anonymous"
+  async>
+</script>
+
+<div id="comments" class="comments-placeholder"></div>
+
+<script>
+(function() {
+  const placeholder = document.getElementById('comments');
+  if (!placeholder) return;
+
+  function insertGiscus(theme) {
+    if (document.querySelector('iframe[src*="giscus.app"]') || document.querySelector('script[data-giscus-loaded]')) return;
+    const s = document.createElement('script');
+    s.src = 'https://giscus.app/client.js';
+    s.async = true;
+    s.crossOrigin = 'anonymous';
+    s.setAttribute('data-repo', 'kraken-503/website');
+    s.setAttribute('data-repo-id', 'R_kgDOQ2jqiw');
+    s.setAttribute('data-category', 'General');
+    s.setAttribute('data-category-id', 'DIC_kwDOQ2jqi84C1Zeh');
+    s.setAttribute('data-mapping', 'pathname');
+    s.setAttribute('data-reactions-enabled', '1');
+    s.setAttribute('data-emit-metadata', '0');
+    s.setAttribute('data-input-position', 'bottom');
+    s.setAttribute('data-theme', theme || 'preferred_color_scheme');
+    s.setAttribute('data-giscus-loaded', '1');
+    placeholder.appendChild(s);
+  }
+
+  const saved = localStorage.getItem('theme');
+  const theme = saved === 'light' ? 'light' : 'dark';
+
+  const io = new IntersectionObserver((entries, obs) => {
+    if (entries.some(e => e.isIntersecting)) {
+      insertGiscus(theme);
+      obs.disconnect();
+    }
+  }, { rootMargin: '400px' });
+
+  io.observe(placeholder);
+
+  window.addEventListener('storage', (e) => {
+    if (e.key !== 'theme') return;
+    const newTheme = e.newValue === 'light' ? 'light' : 'dark';
+    const iframe = document.querySelector('iframe[src*="giscus.app"]');
+    if (iframe && iframe.contentWindow) {
+      iframe.contentWindow.postMessage({ giscus: { setConfig: { theme: newTheme } } }, 'https://giscus.app');
+    }
+  });
+})();
+</script>
+
   </div>
 
   <script>
@@ -73,6 +147,7 @@
       if (saved === 'light') document.body.classList.add('light-mode');
     })();
   </script>
+
 </body>
 </html>
 

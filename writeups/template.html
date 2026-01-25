@@ -49,11 +49,129 @@
   </header>
 
   <div class="writeup-page">
-    <h1 style="font-size: 6vw;">  </h1>
+    <h1 style="font-size: 3rem;">  </h1>
     <small>Jan 2026</small>
    
 
     <a href="../index.html#writeups" class="back-link">&larr; Back to Writeups</a>
+    
+    <script src="https://giscus.app/client.js"
+        data-repo="kraken-503/website"
+        data-repo-id="R_kgDOQ2jqiw"
+        data-category="[ENTER CATEGORY NAME HERE]"
+        data-category-id="[ENTER CATEGORY ID HERE]"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+    <script>
+(function () {
+  // Apply saved theme to the page
+  const saved = localStorage.getItem('theme');
+  const isLight = saved === 'light';
+  document.body.classList.toggle('light-mode', isLight);
+
+  // Try client API, then postMessage, then reload script
+  function setGiscusTheme(theme) {
+    // 1) client API
+    if (window.giscus && typeof window.giscus.setConfig === 'function') {
+      try {
+        window.giscus.setConfig({ theme });
+        return Promise.resolve(true);
+      } catch (e) { /* fall through */ }
+    }
+
+    // 2) postMessage to iframe
+    const iframe = document.querySelector('iframe.giscus-frame') || document.querySelector('iframe[src*="giscus.app"]');
+    if (iframe && iframe.contentWindow) {
+      try {
+        iframe.contentWindow.postMessage({ giscus: { setConfig: { theme } } }, 'https://giscus.app');
+        return Promise.resolve(true);
+      } catch (e) { /* fall through */ }
+    }
+
+    // 3) reload giscus script with data-theme override (last resort)
+    return reloadGiscusWithTheme(theme);
+  }
+
+  function reloadGiscusWithTheme(theme) {
+    return new Promise((resolve, reject) => {
+      const oldScript = Array.from(document.querySelectorAll('script[src]'))
+        .find(s => s.src && s.src.includes('giscus.app/client.js'));
+      if (!oldScript) return reject(new Error('giscus script not found'));
+
+      // remove existing iframe if present
+      const iframe = document.querySelector('iframe.giscus-frame') || document.querySelector('iframe[src*="giscus.app"]');
+      if (iframe && iframe.parentNode) iframe.parentNode.removeChild(iframe);
+
+      // create new script copying data-* attributes but overriding data-theme
+      const newScript = document.createElement('script');
+      newScript.src = oldScript.src;
+      newScript.async = true;
+      newScript.crossOrigin = oldScript.crossOrigin || 'anonymous';
+
+      Array.from(oldScript.attributes).forEach(attr => {
+        if (attr.name.startsWith('data-')) {
+          if (attr.name === 'data-theme') newScript.setAttribute('data-theme', theme);
+          else newScript.setAttribute(attr.name, attr.value);
+        }
+      });
+      if (!newScript.hasAttribute('data-theme')) newScript.setAttribute('data-theme', theme);
+
+      oldScript.parentNode.insertBefore(newScript, oldScript.nextSibling);
+
+      // wait for iframe to appear
+      let tries = 0;
+      const max = 40;
+      const t = setInterval(() => {
+        const f = document.querySelector('iframe.giscus-frame') || document.querySelector('iframe[src*="giscus.app"]');
+        if (f) {
+          clearInterval(t);
+          resolve();
+        } else if (++tries >= max) {
+          clearInterval(t);
+          reject(new Error('giscus iframe did not appear'));
+        }
+      }, 100);
+    });
+  }
+
+  // Kick off sync (poll until success or timeout)
+  const desired = isLight ? 'light' : 'dark';
+  let attempts = 0;
+  const maxAttempts = 40;
+  const poll = setInterval(() => {
+    setGiscusTheme(desired).then(success => {
+      if (success) clearInterval(poll);
+    }).catch(() => {
+      if (++attempts >= maxAttempts) clearInterval(poll);
+    });
+  }, 150);
+
+  // Keep widget in sync if theme changes in another tab
+  window.addEventListener('storage', (e) => {
+    if (e.key !== 'theme') return;
+    const newIsLight = e.newValue === 'light';
+    document.body.classList.toggle('light-mode', newIsLight);
+    setGiscusTheme(newIsLight ? 'light' : 'dark');
+  });
+
+  // Optional helper to toggle programmatically on this page
+  window.syncWriteupTheme = function(makeLight) {
+    document.body.classList.toggle('light-mode', !!makeLight);
+    localStorage.setItem('theme', makeLight ? 'light' : 'dark');
+    setGiscusTheme(makeLight ? 'light' : 'dark');
+  };
+})();
+</script>
+
   </div>
 
   <script>
