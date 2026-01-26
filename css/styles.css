@@ -99,6 +99,27 @@ h1 { margin: 0; font-size: 12vw; font-weight: bold; font-family: 'Chithira', san
 }
 .btn-visualizer:hover { background: #ffffff; color: #000; }
 
+/* Cat animation */
+.title-with-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem; 
+  flex-wrap: wrap;
+}
+
+.title-with-icon h1 {
+  margin: 0;
+  font-size: 13vw;
+  font-family: 'Chithira', sans-serif;
+}
+
+.lottie-icon { width: 17vw;
+  height: auto; 
+  max-width: 80px; 
+  min-width: 40px; 
+}
+
 /* Theme toggle */
 .theme-toggle { position: absolute; top: 1.11rem; right: 1.4rem; background: none; border: none; cursor: pointer; font-size: 1rem; color: var(--accent-green); transition: color 0.3s ease; }
 .theme-toggle:hover { color: #ffffff; }
