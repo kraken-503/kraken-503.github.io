@@ -197,12 +197,12 @@ h1 {
   transition: color 0.3s ease;
 }
 .nav-menu li a:hover {
-  color: #ffffff;
+  color: #9aa0a6;
   text-decoration: underline;
 }
 .nav-menu li a.active {
   text-decoration: underline;
-  color: #ffffff;
+  color: #bfc7cc;
 }
 
 /* Home button */
@@ -216,7 +216,7 @@ h1 {
   transition: color 0.3s ease;
 }
 .home-button:hover {
-  color: #ffffff;
+  color: #9aa0a6;
 }
 
 /* Waveform and visualizer */
@@ -238,7 +238,7 @@ h1 {
   transition: background 0.3s ease;
 }
 .btn-visualizer:hover {
-  background: #ffffff;
+  background: #9aa0a6;
   color: #000;
 }
 
@@ -255,7 +255,7 @@ h1 {
   transition: color 0.3s ease;
 }
 .theme-toggle:hover {
-  color: #ffffff;
+  color: #9aa0a6;
 }
 .theme-toggle .fas {
   color: inherit;
@@ -278,10 +278,10 @@ body.light-mode .terminal-header {
   background-color: #efe7d6;
 }
 body.light-mode a {
-  color: #006699;
+  color: #2e3336;
 }
 body.light-mode a:hover {
-  color: #003f5c;
+  color: #9aa0a6;
 }
 body.light-mode .btn-visualizer {
   background: var(--accent-yellow);
