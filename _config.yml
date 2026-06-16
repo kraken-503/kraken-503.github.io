@@ -1,5 +1,7 @@
 name: Kraken-503 Writeups
 description: Cybersecurity writeups and portfolio
+url: "https://kraken-503.github.io"
+baseurl: ""
 permalink: /writeups/:title/
 markdown: kramdown
 
