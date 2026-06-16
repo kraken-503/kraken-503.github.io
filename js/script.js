@@ -283,7 +283,6 @@ document.addEventListener("DOMContentLoaded", () => {
     typeWriterLoop();
   }
   setupMenu();
-  loadWriteups();
 
   // Restore section from hash
   const section = window.location.hash.replace("#", "") || "home";
