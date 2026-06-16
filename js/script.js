@@ -65,29 +65,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Writeups loader
-  const writeups = [
-    { title: "neovim", date: "Jan 2026", link: "./writeups/neovim.html" },
-    {
-      title: "iusearchbtw",
-      date: "Dec 2025",
-      link: "./writeups/archlinux.html",
-    },
-  ];
-
-  function loadWriteups() {
-    const container = document.getElementById("writeups-container");
-    if (!container) return;
-    container.innerHTML = "";
-    writeups.forEach((w) => {
-      const heading = document.createElement("a");
-      heading.className = "writeup-heading";
-      heading.href = w.link;
-      heading.innerHTML = `<h3>$ cat ${w.title.replace(/\s+/g, "_")}.txt</h3><small>${w.date}</small>`;
-      container.appendChild(heading);
-    });
-  }
-
   // Wavesurfer Visualizer
   // Determine initial theme
   const savedTheme = localStorage.getItem("theme");
