@@ -1,0 +1,7 @@
+name: Kraken-503 Writeups
+description: Cybersecurity writeups and portfolio
+permalink: /writeups/:title/
+markdown: kramdown
+
+# This ensures Jekyll doesn't ignore existing static assets
+include: [css, js, img, fonts, audio]
