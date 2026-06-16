@@ -141,10 +141,21 @@
     </section>
 
     <!-- Writeups -->
-    <section id="writeups" class="page-section hidden">
-      <div id="writeups-container"></div>
+<section id="writeups" class="page-section hidden">
+      <div id="writeups-container">
+        <h2 style="font-family: 'Courier New', monospace; margin-bottom: 1.5rem;"><code>$ cat writeups.txt</code></h2>
+        <ul style="list-style-type: none; padding: 0; line-height: 2rem;">
+          {% for post in site.posts %}
+            <li>
+              <span style="color: #aaa; margin-right: 1rem;">[{{ post.date | date: "%Y-%m-%d" }}]</span>
+              <a href="{{ post.url }}" style="color: var(--accent-green); text-decoration: none; font-weight: bold;">
+                {{ post.title }}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
     </section>
-
     <!-- Extras -->
     <section id="extras" class="page-section hidden">
       <center>
